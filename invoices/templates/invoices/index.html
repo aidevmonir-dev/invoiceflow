@@ -1,0 +1,63 @@
+{% extends "invoices/base.html" %}{% load static %}
+{% block content %}
+<main class="page">
+  <section class="intro">
+    <h1>Turn invoices and receipts into checked, approved data.</h1>
+    <p class="lede">Upload a PDF or photo. InvoiceFlow reads the supplier, dates, line items, VAT and totals, checks that the numbers add up, and waits for a person to approve before anything is exported.</p>
+    {% if not ai_enabled %}
+    <p class="banner">No AI model is connected to this copy. The samples show the values printed on them, labelled as a stored example, and your own uploads can be entered by hand. Add an API key to read new documents.</p>
+    {% endif %}
+  </section>
+
+  <section class="start">
+    <form id="upload" class="drop" novalidate>
+      <input type="file" id="file" name="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/*" hidden>
+      <p class="drop-title">Upload an invoice or receipt</p>
+      <p class="hint">PDF, JPG, PNG or WebP. Up to {{ max_mb }} MB and {{ max_pages }} pages. You can also drop a file here.</p>
+      <button type="button" class="btn" id="pick">Choose a file</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="samples">
+      <p class="drop-title">Or try a sample</p>
+      <ul>
+        {% for key, sample in samples.items %}
+        <li>
+          <button type="button" class="sample" data-key="{{ key }}">
+            <img src="/samples/{{ key }}.png" alt="" width="64" height="90" loading="lazy">
+            <span>{{ sample.title }}</span>
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="hint">The samples are fictional. One has a mistake printed on it, to show what a failed check looks like.</p>
+    </div>
+  </section>
+
+  <section class="list" aria-labelledby="list-title">
+    <div class="list-head">
+      <h2 id="list-title">Your documents</h2>
+      <p class="exports">Export approved documents: <a href="/export.csv">CSV</a> · <a href="/export.json">JSON</a></p>
+    </div>
+    {% if documents %}
+    <table class="docs">
+      <thead><tr><th scope="col">File</th><th scope="col">Supplier</th><th scope="col" class="num">Total</th><th scope="col">Status</th></tr></thead>
+      <tbody>
+      {% for d in documents %}
+        <tr>
+          <td><a href="/documents/{{ d.pk }}/">{{ d.filename }}</a></td>
+          <td>{{ d.data.supplier.name|default:"-" }}</td>
+          <td class="num">{% if d.data.total is not None %}{{ d.data.currency|default:"" }} {{ d.data.total|floatformat:2 }}{% else %}-{% endif %}</td>
+          <td><span class="pill pill-{{ d.status }}">{{ d.get_status_display }}</span></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty">Nothing here yet. Upload a document or pick a sample to start.</p>
+    {% endif %}
+    <p class="privacy">Your documents are visible only in this browser and are deleted after {{ retention_hours }} hours. Do not upload documents with other people's personal data to a public demo.</p>
+  </section>
+</main>
+{% endblock %}
+{% block scripts %}<script src="{% static 'invoices/index.js' %}" defer></script>{% endblock %}

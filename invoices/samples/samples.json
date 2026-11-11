@@ -1,0 +1,166 @@
+{
+ "swiss-invoice": {
+  "title": "Software invoice, Zürich (CHF, 8.1% VAT)",
+  "file": "swiss-invoice.png",
+  "values": {
+   "document_type": "invoice",
+   "supplier": {
+    "name": "Alpenkraft Software GmbH",
+    "address": "Bahnhofstrasse 21, 8001 Zürich",
+    "vat_id": "CHE-123.456.789 MWST"
+   },
+   "customer": {
+    "name": "Seeblick Hotel AG",
+    "address": "Seestrasse 5, 6006 Luzern",
+    "vat_id": null
+   },
+   "invoice_number": "AK-2026-0417",
+   "issue_date": "2026-11-03",
+   "due_date": "2026-12-03",
+   "currency": "CHF",
+   "line_items": [
+    {
+     "description": "Booking system licence, annual",
+     "quantity": 1,
+     "unit_price": 2400.0,
+     "amount": 2400.0,
+     "vat_rate": 8.1
+    },
+    {
+     "description": "Implementation and data migration (hours)",
+     "quantity": 12,
+     "unit_price": 145.0,
+     "amount": 1740.0,
+     "vat_rate": 8.1
+    },
+    {
+     "description": "Staff training session",
+     "quantity": 2,
+     "unit_price": 380.0,
+     "amount": 760.0,
+     "vat_rate": 8.1
+    }
+   ],
+   "subtotal": 4900.0,
+   "vat_total": 396.9,
+   "total": 5296.9,
+   "iban": "CH56 0483 5012 3456 7800 9",
+   "payment_reference": "AK-2026-0417",
+   "uncertain_fields": []
+  }
+ },
+ "german-invoice": {
+  "title": "Print shop invoice, Hamburg (EUR, 19% and 7% VAT)",
+  "file": "german-invoice.png",
+  "values": {
+   "document_type": "invoice",
+   "supplier": {
+    "name": "Druckerei Weber & Söhne",
+    "address": "Hafenstraße 8, 20457 Hamburg",
+    "vat_id": "DE298765432"
+   },
+   "customer": {
+    "name": "Café Lindenblatt GmbH",
+    "address": "Kastanienallee 12, 10435 Berlin",
+    "vat_id": null
+   },
+   "invoice_number": "2026-1182",
+   "issue_date": "2026-10-28",
+   "due_date": "2026-11-11",
+   "currency": "EUR",
+   "line_items": [
+    {
+     "description": "Speisekarten A4, laminiert",
+     "quantity": 40,
+     "unit_price": 4.5,
+     "amount": 180.0,
+     "vat_rate": 19
+    },
+    {
+     "description": "Flyer A6, 2.500 Stück",
+     "quantity": 1,
+     "unit_price": 189.0,
+     "amount": 189.0,
+     "vat_rate": 19
+    },
+    {
+     "description": "Visitenkarten, 500 Stück",
+     "quantity": 2,
+     "unit_price": 39.9,
+     "amount": 79.8,
+     "vat_rate": 19
+    },
+    {
+     "description": "Broschüre „Unsere Geschichte“",
+     "quantity": 50,
+     "unit_price": 2.8,
+     "amount": 140.0,
+     "vat_rate": 7
+    }
+   ],
+   "subtotal": 588.8,
+   "vat_total": 95.07,
+   "total": 683.87,
+   "iban": "DE89 3704 0044 0532 0130 00",
+   "payment_reference": "RE 2026-1182",
+   "uncertain_fields": []
+  }
+ },
+ "bakery-receipt": {
+  "title": "Bakery receipt, Bern (total printed wrong)",
+  "file": "bakery-receipt.png",
+  "values": {
+   "document_type": "receipt",
+   "supplier": {
+    "name": "Bäckerei Sonnenhof",
+    "address": "Marktgasse 3, 3011 Bern",
+    "vat_id": "CHE-987.654.321 MWST"
+   },
+   "customer": {
+    "name": null,
+    "address": null,
+    "vat_id": null
+   },
+   "invoice_number": "4471",
+   "issue_date": "2026-11-12",
+   "due_date": null,
+   "currency": "CHF",
+   "line_items": [
+    {
+     "description": "Gipfeli",
+     "quantity": 4,
+     "unit_price": 1.8,
+     "amount": 7.2,
+     "vat_rate": 2.6
+    },
+    {
+     "description": "Bürli",
+     "quantity": 2,
+     "unit_price": 1.4,
+     "amount": 2.8,
+     "vat_rate": 2.6
+    },
+    {
+     "description": "Zopf 500 g",
+     "quantity": 1,
+     "unit_price": 6.9,
+     "amount": 6.9,
+     "vat_rate": 2.6
+    },
+    {
+     "description": "Café crème",
+     "quantity": 2,
+     "unit_price": 4.6,
+     "amount": 9.2,
+     "vat_rate": 2.6
+    }
+   ],
+   "subtotal": null,
+   "vat_total": 0.69,
+   "total": 27.1,
+   "iban": null,
+   "payment_reference": null,
+   "uncertain_fields": []
+  }
+ }
+}

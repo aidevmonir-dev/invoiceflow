@@ -1,0 +1,65 @@
+{% extends "invoices/base.html" %}{% load static %}
+{% block title %}Review {{ document.filename }} | InvoiceFlow{% endblock %}
+{% block content %}
+<main class="review">
+  <section class="preview" aria-label="Original document">
+    <div class="preview-head">
+      <a href="/">All documents</a>
+      <span class="file">{{ document.filename }}</span>
+    </div>
+    {% if document.media_type == "application/pdf" %}
+    <iframe src="/documents/{{ document.pk }}/file" title="Original document"></iframe>
+    {% else %}
+    <div class="scroll"><img src="/documents/{{ document.pk }}/file" alt="The uploaded document"></div>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-label="Extracted data">
+    <div class="panel-head">
+      <h1>Check and approve</h1>
+      <span class="pill" id="status-pill"></span>
+    </div>
+    <p class="source" id="source"></p>
+    <p class="banner bad" id="failed" hidden></p>
+
+    <div id="editor" hidden>
+      <div class="checks" id="checks" aria-live="polite"></div>
+
+      <form id="form" novalidate>
+        <fieldset id="fields">
+          <legend class="sr">Document details</legend>
+          <label class="field"><span>Type</span>
+            <select data-key="document_type">
+              <option value="invoice">Invoice</option>
+              <option value="receipt">Receipt</option>
+              <option value="credit_note">Credit note</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          {% for key, label in header_fields %}
+          <label class="field" data-field="{{ key }}"><span>{{ label }}</span><input type="text" data-key="{{ key }}" autocomplete="off"></label>
+          {% endfor %}
+        </fieldset>
+
+        <h2>Line items</h2>
+        <div class="table-wrap">
+          <table class="lines" data-field="line_items">
+            <thead><tr><th scope="col">Description</th><th scope="col" class="num">Qty</th><th scope="col" class="num">Unit price</th><th scope="col" class="num">Amount</th><th scope="col" class="num">VAT %</th><th scope="col"><span class="sr">Remove</span></th></tr></thead>
+            <tbody id="lines"></tbody>
+          </table>
+        </div>
+        <button type="button" class="link" id="add-line">Add a line</button>
+      </form>
+
+      <div class="actions">
+        <p class="saved" id="saved" role="status" aria-live="polite"></p>
+        <button type="button" class="btn btn-quiet" id="delete">Delete</button>
+        <button type="button" class="btn btn-quiet" id="reopen" hidden>Reopen for changes</button>
+        <button type="button" class="btn" id="approve">Approve</button>
+      </div>
+    </div>
+  </section>
+</main>
+{{ payload|json_script:"payload" }}
+{% endblock %}
+{% block scripts %}<script src="{% static 'invoices/review.js' %}" defer></script>{% endblock %}

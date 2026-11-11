@@ -1,0 +1,23 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}InvoiceFlow | Invoice and receipt data extraction with human review{% endblock %}</title>
+<meta name="description" content="Upload an invoice or receipt, get the supplier, dates, line items, VAT and totals as structured data, check the maths automatically, approve, and export to CSV. Open source, by Devomio.">
+<link rel="icon" type="image/svg+xml" href="{% static 'invoices/icon.svg' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'invoices/app.css' %}">
+</head>
+<body>
+<header class="bar">
+  <a class="product" href="/"><img src="{% static 'invoices/icon.svg' %}" width="30" height="30" alt=""><span>InvoiceFlow</span></a>
+  <p class="by">A demo by <a href="https://devomio.com/" rel="noopener">Devomio</a></p>
+  <a class="repo" href="{{ repo_url }}" rel="noopener">Source on GitHub</a>
+</header>
+{% block content %}{% endblock %}
+{% block scripts %}{% endblock %}
+</body>
+</html>
