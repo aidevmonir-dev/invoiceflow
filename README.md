@@ -1,5 +1,9 @@
 # InvoiceFlow
 
+**Live demo: [invoiceflow.devomio.com](https://invoiceflow.devomio.com/)**
+
+![Screenshot of the live demo](docs/screenshot.png)
+
 Turn invoices and receipts into checked, approved data.
 
 Upload a PDF or a photo. InvoiceFlow reads the supplier, dates, line items, VAT and totals, checks
